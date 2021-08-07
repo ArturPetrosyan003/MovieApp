@@ -1,21 +1,69 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+
+import Foundation from 'react-native-vector-icons/Foundation';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import Home from './Components/Home/index';
+import Explore from './Components/Explore';
+import Saved from './Components/Saved';
+import Profile from './Components/Profile';
+
+const Tab = createMaterialBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator
+        initialRouteName="Home"
+        activeColor="#2f3fbb"
+        barStyle={{ backgroundColor: '#070d2d' }}
+      >
+        <Tab.Screen
+          name="Home"
+          component={Home}
+          options={{
+            tabBarLabel: '',
+            tabBarIcon: ({ color }) => (
+              <Foundation name="home" color={color} size={30} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="List"
+          component={Explore}
+          options={{
+            tabBarLabel: '',
+            tabBarIcon: ({ color }) => (
+              <MaterialIcons name="explore" color={color} size={25} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Saved"
+          component={Saved}
+          options={{
+            tabBarLabel: '',
+            tabBarIcon: ({ color }) => (
+              <Foundation name="flag" color={color} size={30} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            tabBarLabel: '',
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="account" color={color} size={30} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
