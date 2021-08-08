@@ -12,6 +12,8 @@ import Explore from './Components/Explore';
 import Saved from './Components/Saved';
 import Profile from './Components/Profile';
 
+import THEME from './theme';
+
 const Tab = createMaterialBottomTabNavigator();
 
 export default function App() {
@@ -20,13 +22,17 @@ export default function App() {
       <Tab.Navigator
         initialRouteName="Home"
         activeColor="#2f3fbb"
-        barStyle={{ backgroundColor: '#070d2d' }}
+        barStyle={{
+          backgroundColor: THEME.mainPurple,
+        }}
+        sceneAnimationEnabled={false}
+        // labeled={false}
       >
         <Tab.Screen
           name="Home"
           component={Home}
           options={{
-            tabBarLabel: '',
+            tabBarLabel: '•',
             tabBarIcon: ({ color }) => (
               <Foundation name="home" color={color} size={30} />
             ),
@@ -36,7 +42,7 @@ export default function App() {
           name="List"
           component={Explore}
           options={{
-            tabBarLabel: '',
+            tabBarLabel: '•',
             tabBarIcon: ({ color }) => (
               <MaterialIcons name="explore" color={color} size={25} />
             ),
@@ -46,7 +52,7 @@ export default function App() {
           name="Saved"
           component={Saved}
           options={{
-            tabBarLabel: '',
+            tabBarLabel: '•',
             tabBarIcon: ({ color }) => (
               <Foundation name="flag" color={color} size={30} />
             ),
@@ -56,7 +62,7 @@ export default function App() {
           name="Profile"
           component={Profile}
           options={{
-            tabBarLabel: '',
+            tabBarLabel: '•',
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons name="account" color={color} size={30} />
             ),
