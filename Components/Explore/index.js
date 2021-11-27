@@ -11,11 +11,11 @@ const Explore = (props) => {
     const [films, setFilms] = useState([]);
 
     useEffect(() => {
-        // fetchStartups();
-    }, []);
+        fetchMovies();
+    }, [props.route.params.genreId]);
 
-    const fetchStartups = async () => {
-        const request = await fetch('https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=18&page=1', {
+    const fetchMovies = async () => {
+        const request = await fetch(`https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=${props.route.params.genreId}&page=1`, {
             headers: {
                 'x-rapidapi-host': 'advanced-movie-search.p.rapidapi.com',
                 'x-rapidapi-key': '0ca4bce728msh0ed2c09d0438568p17a57fjsndf4fa7302df5'
@@ -30,27 +30,26 @@ const Explore = (props) => {
 
     return (
         <View style={styles.container}>
-            {/* <View style={styles.listContainer}> */}
             <FlatList
-                data={[1, 2, 3, 4, 5]}
+                data={films}
                 numColumns={2}
                 columnWrapperStyle={{ flexWrap: 'wrap' }}
                 showsHorizontalScrollIndicator={false}
                 style={styles.listContainer}
                 renderItem={({ item }) => (
                     <PopularItem
-                    // data={{
-                    //     image: item.poster_path,
-                    //     name: item.title,
-                    //     rating: 5 * item.vote_average / 10,
-                    //     description: item.overview,
-                    //     releaseDate: item.release_date,
-                    //     genres: item.genre_ids.map(i => props.route.params.genreList.filter(k => k.id == i))
-                    // }}
+                        data={{
+                            image: item.poster_path,
+                            name: item.title,
+                            rating: 5 * item.vote_average / 10,
+                            description: item.overview,
+                            releaseDate: item.release_date,
+                            genres: item.genre_ids.map(i => props.route.params.genreList.filter(k => k.id == i))
+                        }}
+                        navigation={props.navigation}
                     />
                 )}
             />
-            {/* </View> */}
         </View>
     );
 };
@@ -60,10 +59,10 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: THEME.mainPurple,
         paddingTop: RFValue(50),
-        paddingHorizontal: RFValue(12)
+        paddingHorizontal: RFValue(11)
     },
     listContainer: {
-        width: '100%',
+        width: '115%',
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap'

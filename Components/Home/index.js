@@ -108,10 +108,10 @@ const Home = (props) => {
     ];
 
     const [films, setFilms] = useState([]);
-    const [loading, setLoading] = useState(false /* true */);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // fetchMovies();
+        fetchMovies();
     }, []);
 
     const fetchMovies = async () => {
@@ -234,10 +234,6 @@ const Home = (props) => {
                                         null
                                 ))
                                 : <PopularItem />
-                            // <ActivityIndicator
-                            //     color='white'
-                            //     size='large'
-                            // />
                         }
                     </ScrollView>
                 </View>
