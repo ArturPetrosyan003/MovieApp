@@ -1,14 +1,23 @@
 import React from 'react';
-import { View, Image, StyleSheet, Text } from 'react-native';
+import { View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import THEME from '../../theme';
 
 const GenreItem = (props) => {
     return (
-        <View style={styles.container}>
-            <Text style={styles.icon}>{props.icon}</Text>
-            <Text style={styles.label}>{props.label}</Text>
-        </View>
+        <TouchableOpacity
+            onPress={() => {
+                props.navigation.navigate('Explore', {
+                    genreId: props.id,
+                    genreList: props.genreList
+                })
+            }}
+        >
+            <View style={styles.container}>
+                <Text style={styles.icon}>{props.icon}</Text>
+                <Text numberOfLines={1} style={styles.label}>{props.label}</Text>
+            </View>
+        </TouchableOpacity>
     );
 };
 
