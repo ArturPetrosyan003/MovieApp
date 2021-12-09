@@ -2,9 +2,6 @@ import React, { useEffect } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { RFValue } from 'react-native-responsive-fontsize';
-import Constants from 'expo-constants';
-
-import { paddingTop } from '../../constants';
 
 import Back from '../../assets/icons/Navigation/back.png';
 import Save from '../../assets/icons/Navigation/saved.png';
@@ -16,7 +13,7 @@ const Single = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.top}>
-                <TouchableOpacity onPress={() => props.navigation.navigate('Home')}>
+                <TouchableOpacity onPress={() => props.navigation.navigate(props.route.params.backScreen)}>
                     <Image style={{ tintColor: 'white', width: 24, height: 24 }} source={Back} />
                 </TouchableOpacity>
 
@@ -64,11 +61,13 @@ const Single = (props) => {
                         showsHorizontalScrollIndicator={false}
                     >
                         {
+                            props.route.params.data.genres ? 
                             props.route.params.data.genres.map((i, index) => (
                                 <View key={index} style={styles.genreItem}>
                                     <Text style={styles.genreName}>{i[0].label}</Text>
                                 </View>
                             ))
+                            : null
                         }
                     </ScrollView>
 

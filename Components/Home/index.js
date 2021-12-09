@@ -12,100 +12,9 @@ import THEME from '../../theme';
 
 import AvatarTest from '../../assets/images/avatar.jpg';
 
-const Home = (props) => {
+import { genreList } from '../../data.js';
 
-    const genreList = [
-        {
-            id: 18,
-            icon: '😥',
-            label: 'Drama'
-        },
-        {
-            id: 35,
-            icon: '😂',
-            label: 'Comedy'
-        },
-        {
-            id: 28,
-            icon: '🤪',
-            label: 'Action'
-        },
-        {
-            id: 53,
-            icon: '😐',
-            label: 'Thriller'
-        },
-        {
-            id: 10749,
-            icon: '🥰',
-            label: 'Romance'
-        },
-        {
-            id: 12,
-            icon: '🤩',
-            label: 'Adventure'
-        },
-        {
-            id: 14,
-            icon: '👽',
-            label: 'Fantasy'
-        },
-        {
-            id: 878,
-            icon: '🙃',
-            label: 'Science Fiction'
-        },
-        {
-            id: 10751,
-            icon: '🤗',
-            label: 'Family'
-        },
-        {
-            id: 27,
-            icon: '😱',
-            label: 'Horror'
-        },
-        {
-            id: 10752,
-            icon: '🤕',
-            label: 'War'
-        },
-        {
-            id: 99,
-            icon: '🧐',
-            label: 'Documentary'
-        },
-        {
-            id: 36,
-            icon: '🤓',
-            label: 'History'
-        },
-        {
-            id: 16,
-            icon: '😊',
-            label: 'Animation'
-        },
-        {
-            id: 80,
-            icon: '😠',
-            label: 'Crime'
-        },
-        {
-            id: 9648,
-            icon: '😮',
-            label: 'Mystery'
-        },
-        {
-            id: 37,
-            icon: '🤠',
-            label: 'Western'
-        },
-        {
-            id: 10402,
-            icon: '🎵',
-            label: 'Music'
-        },
-    ];
+const Home = (props) => {
 
     const [films, setFilms] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -163,7 +72,7 @@ const Home = (props) => {
                     />
                 </View>
 
-                <View style={styles.searchContainer}>
+                {/* <View style={styles.searchContainer}>
                     <SearchBar
                         round
                         containerStyle={styles.searchBackground}
@@ -173,7 +82,7 @@ const Home = (props) => {
                         placeholder='Search your movie'
                         placeholderTextColor={THEME.lightPurple}
                     />
-                </View>
+                </View> */}
 
                 <View style={styles.sectionContainer}>
                     <Text style={styles.sectionLabel}>Categories</Text>
@@ -291,7 +200,7 @@ const styles = StyleSheet.create({
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        marginTop: RFValue(20)
+        marginTop: RFValue(30)
     },
     sectionLabel: {
         color: 'white',

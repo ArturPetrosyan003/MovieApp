@@ -6,7 +6,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 import THEME from '../../theme';
 
-const PopularItem = (props) => {
+const FilmCard = (props) => {
     return (
         <TouchableOpacity
             onPress={() => {
@@ -19,11 +19,12 @@ const PopularItem = (props) => {
             <View style={styles.container}>
                 <Image style={styles.image} source={{ uri: props.data ? props.data.image : null }} />
                 <Text style={styles.name} numberOfLines={1} >{props.data ? props.data.name : null}</Text>
+                <Text style={styles.releaseDate} numberOfLines={1} >{props.data ? props.data.releaseDate : null}</Text>
                 {
                     props.data ?
                         <Rating
                             readonly
-                            imageSize={20}
+                            imageSize={25}
                             startingValue={props.data ? props.data.rating : null}
                             tintColor={THEME.mainPurple}
                         />
@@ -36,28 +37,35 @@ const PopularItem = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        width: RFValue(200),
-        height: RFValue(300),
+        width: RFValue(300),
+        height: RFValue(450),
         display: 'flex',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        marginBottom: RFValue(50)
     },
     image: {
         width: '80%',
-        height: '70%',
+        height: '80%',
         backgroundColor: THEME.darkPurple,
         borderRadius: 30,
         // resizeMode: 'cover',
     },
     name: {
         color: 'white',
-        fontSize: RFValue(18),
+        fontSize: RFValue(20),
         fontFamily: 'PT',
         marginTop: 15,
         marginBottom: 5,
         maxWidth: '90%'
+    },
+    releaseDate: {
+        color: 'white',
+        fontSize: RFValue(16),
+        fontFamily: 'PT',
+        marginBottom: 5,
     }
 })
 
-export default PopularItem;
+export default FilmCard;
