@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '80%',
-        height: '80%',
+        height: '75%',
         backgroundColor: THEME.darkPurple,
         borderRadius: 30,
         // resizeMode: 'cover',

@@ -9,10 +9,10 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import HomeNavigator from './Components/Home/Navigator';
-import Home from './Components/Home/index';
 import Explore from './Components/Explore';
 import Saved from './Components/Saved';
 import Profile from './Components/Profile';
+import Auth from './Components/Auth';
 
 import HomeIcon from './assets/icons/Navigation/home.png';
 import ExploreIcon from './assets/icons/Navigation/explore.png';
@@ -28,87 +28,86 @@ export default function App() {
 
   const [loading, setLoading] = useState(true);
   const [showTabs, setShowTabs] = useState(true);
+  const [authenticated, setAuthentication] = useState(false);
 
   // const navigationRef = useRef(null);
 
-  useEffect(() => {
-    console.log(showTabs);
-  }, [showTabs]);
-
   const loadApp = async () => {
     await Font.loadAsync({
-      'PT': require('./assets/fonts/PTSans-Regular.ttf')
+      'PT': require('./assets/fonts/PTSans-Regular.ttf'),
+      'Lobster': require('./assets/fonts/Lobster-Regular.ttf')
     });
   }
 
   return (
-    loading ?
-      <AppLoading
-        startAsync={loadApp}
-        onFinish={() => setLoading(false)}
-        onError={(error) => console.error(error)}
-      />
-      :
-      <>
-        <StatusBar style='light' hidden/>
-        <NavigationContainer>
-          <Tab.Navigator
-            initialRouteName="Home"
-            activeColor="#2f3fbb"
-            inactiveColor='#32385A'
-            barStyle={{
-              height: RFValue(65),
-              backgroundColor: THEME.mainPurple,
-              display: showTabs ? 'flex' : 'none'
-            }}
-          >
-            <Tab.Screen
-              name="Home"
-              component={HomeNavigator}
-              // initialParams={{
-              //   navigationRef: navigationRef,
-              //   setShowTabs: setShowTabs
-              // }}
-              options={{
-                tabBarLabel: '•',
-                tabBarIcon: ({ color }) => (
-                  <Image source={HomeIcon} style={{ tintColor: color, width: 24, height: 24 }} />
-                ),
-              }}
-            />
-            <Tab.Screen
-              name="Explore"
-              component={Explore}
-              options={{
-                tabBarLabel: '•',
-                tabBarIcon: ({ color }) => (
-                  <Image source={ExploreIcon} style={{ tintColor: color, width: 24, height: 24 }} />
-                ),
-              }}
-            />
-            <Tab.Screen
-              name="Saved"
-              component={Saved}
-              options={{
-                tabBarLabel: '•',
-                tabBarIcon: ({ color }) => (
-                  <Image source={SavedIcon} style={{ tintColor: color, width: 24, height: 24 }} />
-                ),
-              }}
-            />
-            <Tab.Screen
-              name="Profile"
-              component={Profile}
-              options={{
-                tabBarLabel: '•',
-                tabBarIcon: ({ color }) => (
-                  <Image source={ProfileIcon} style={{ tintColor: color, width: 24, height: 24 }} />
-                ),
-              }}
-            />
-          </Tab.Navigator>
-        </NavigationContainer>
-      </>
+    <>
+      <StatusBar style='light' hidden />
+      {
+        loading ?
+          <AppLoading
+            startAsync={loadApp}
+            onFinish={() => setLoading(false)}
+            onError={(error) => console.error(error)}
+          />
+          : !authenticated ?
+            <Auth login={setAuthentication} />
+            :
+            <NavigationContainer>
+              <Tab.Navigator
+                initialRouteName="Home"
+                activeColor="#2f3fbb"
+                inactiveColor='#32385A'
+                barStyle={{
+                  height: RFValue(75),
+                  paddingTop: RFValue(10),
+                  backgroundColor: THEME.mainPurple,
+                  display: showTabs ? 'flex' : 'none'
+                }}
+              >
+                <Tab.Screen
+                  name="Home"
+                  component={HomeNavigator}
+                  options={{
+                    tabBarLabel: '•',
+                    tabBarIcon: ({ color }) => (
+                      <Image source={HomeIcon} style={{ tintColor: color, width: 24, height: 24 }} />
+                    ),
+                  }}
+                />
+                <Tab.Screen
+                  name="Explore"
+                  component={Explore}
+                  options={{
+                    tabBarLabel: '•',
+                    tabBarIcon: ({ color }) => (
+                      <Image source={ExploreIcon} style={{ tintColor: color, width: 24, height: 24 }} />
+                    ),
+                  }}
+                />
+                <Tab.Screen
+                  name="Saved"
+                  component={Saved}
+                  options={{
+                    tabBarLabel: '•',
+                    tabBarIcon: ({ color }) => (
+                      <Image source={SavedIcon} style={{ tintColor: color, width: 24, height: 24 }} />
+                    ),
+                  }}
+                />
+                <Tab.Screen
+                  name="Profile"
+                  component={Profile}
+                  options={{
+                    tabBarLabel: '•',
+                    tabBarIcon: ({ color }) => (
+                      <Image source={ProfileIcon} style={{ tintColor: color, width: 24, height: 24 }} />
+                    ),
+                  }}
+                />
+              </Tab.Navigator>
+            </NavigationContainer>
+      }
+    </>
   );
 }
 

@@ -8,8 +8,7 @@ const GenreItem = (props) => {
         <TouchableOpacity
             onPress={() => {
                 props.navigation.navigate('Explore', {
-                    genreId: props.id,
-                    genreList: props.genreList
+                    genreId: props.id
                 })
             }}
         >

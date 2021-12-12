@@ -127,18 +127,20 @@ const Home = (props) => {
                             !loading ?
                                 films.map((i, index) => (
                                     index <= 10 && i.adult == false ?
-                                        <PopularItem
-                                            key={index}
-                                            data={{
-                                                image: i.poster_path,
-                                                name: i.title,
-                                                rating: 5 * i.vote_average / 10,
-                                                description: i.overview,
-                                                releaseDate: i.release_date,
-                                                genres: i.genre_ids.map(i => genreList.filter(k => k.id == i))
-                                            }}
-                                            navigation={props.navigation}
-                                        />
+                                        !i.title.toLowerCase().includes("porn") && !i.title.toLowerCase().includes("sex") ?
+                                            <PopularItem
+                                                key={index}
+                                                data={{
+                                                    image: i.poster_path,
+                                                    name: i.title,
+                                                    rating: 5 * i.vote_average / 10,
+                                                    description: i.overview,
+                                                    releaseDate: i.release_date,
+                                                    genres: i.genre_ids.map(i => genreList.filter(k => k.id == i))
+                                                }}
+                                                navigation={props.navigation}
+                                            />
+                                            : null
                                         :
                                         null
                                 ))
