@@ -64,6 +64,7 @@ const Home = (props) => {
                         rounded
                         source={AvatarTest}
                         size="medium"
+                        onPress={() => props.navigation.navigate('Profile')}
                     />
                     <Badge
                         status="success"
