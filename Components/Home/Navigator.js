@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -14,18 +14,6 @@ const forFade = ({ current }) => ({
 });
 
 const HomeNavigator = (props) => {
-
-    // useEffect(() => {
-    //     if (props.route.params.navigationRef.current != null) {
-    //         if (props.route.params.navigationRef.current.getCurrentRoute().name == 'Single') {
-    //             props.route.params.setShowTabs(false);
-    //         }
-    //         else {
-    //             props.route.params.setShowTabs(true);
-    //         }
-    //     }
-    // }, [props]);
-
     return (
         <Stack.Navigator
             initialRouteName="Home"
@@ -37,6 +25,9 @@ const HomeNavigator = (props) => {
             <Stack.Screen
                 name='Home'
                 component={Home}
+                initialParams={{
+                    userId: props.route.params.userId
+                }}
             />
             <Stack.Screen
                 name='Single'

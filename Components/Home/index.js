@@ -17,15 +17,27 @@ import { genreList } from '../../data.js';
 const Home = (props) => {
 
     const [films, setFilms] = useState([]);
+    const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetchMovies();
+        fetchUserData();
     }, []);
 
-    const fetchMovies = async () => {
+
+    const fetchUserData = async () => {
         setLoading(true);
 
+        const request = await fetch(`https://movhome-e3812-default-rtdb.firebaseio.com/users/${props.route.params.userId}.json`);
+        const response = await request.json();
+
+        if (response) {
+            setUser({ ...response });
+            fetchMovies();
+        }
+    }
+
+    const fetchMovies = async () => {
         const request = await fetch(`https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=${genreList[Math.floor(Math.random() * genreList.length - 1)].id}&page=1`, {
             headers: {
                 'x-rapidapi-host': 'advanced-movie-search.p.rapidapi.com',
@@ -59,7 +71,7 @@ const Home = (props) => {
                 }
             >
                 <View style={styles.top}>
-                    <Text style={styles.topText} >Hi, Artur!</Text>
+                    <Text style={styles.topText} >Hi, {user.username}!</Text>
                     <Avatar
                         rounded
                         source={AvatarTest}

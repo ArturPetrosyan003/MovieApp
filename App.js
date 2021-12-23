@@ -29,6 +29,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [showTabs, setShowTabs] = useState(true);
   const [authenticated, setAuthentication] = useState(false);
+  const [userId, setUserId] = useState("aa");
 
   // const navigationRef = useRef(null);
 
@@ -50,7 +51,7 @@ export default function App() {
             onError={(error) => console.error(error)}
           />
           : !authenticated ?
-            <Auth login={setAuthentication} />
+            <Auth login={setAuthentication} setUserId={setUserId} />
             :
             <NavigationContainer>
               <Tab.Navigator
@@ -67,6 +68,9 @@ export default function App() {
                 <Tab.Screen
                   name="Home"
                   component={HomeNavigator}
+                  initialParams={{
+                    userId: userId
+                  }}
                   options={{
                     tabBarLabel: '•',
                     tabBarIcon: ({ color }) => (
@@ -97,6 +101,9 @@ export default function App() {
                 <Tab.Screen
                   name="Profile"
                   component={Profile}
+                  initialParams={{
+                    setAuthentication: setAuthentication
+                  }}
                   options={{
                     tabBarLabel: '•',
                     tabBarIcon: ({ color }) => (

@@ -9,9 +9,10 @@ import RightArrow from '../../assets/icons/right-arrow.png';
 import THEME from '../../theme';
 
 const Profile = (props) => {
+    console.log(props);
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.logoutButton}>
+            <TouchableOpacity style={styles.logoutButton} onPress={() => props.route.params.setAuthentication(false)}>
                 <Text style={styles.logoutButtonText}>Log out</Text>
             </TouchableOpacity>
 
