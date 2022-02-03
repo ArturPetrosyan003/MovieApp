@@ -5,10 +5,9 @@ import BackgroundImage from '../../assets/images/authBackground.jpg';
 
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import Registration from './registration';
 import LandingPage from './landingPage';
-
-import THEME from '../../theme';
+import Login from './login';
+import Registration from './registration';
 
 const Auth = (props) => {
     const [viewId, setViewId] = useState(0);
@@ -23,11 +22,17 @@ const Auth = (props) => {
                             setViewId={setViewId}
                             setUserId={props.setUserId}
                         />
-                        : <Registration
+                        : viewId === 1 ? <Login
                             login={props.login}
                             setViewId={setViewId}
                             setUserId={props.setUserId}
                         />
+                            :
+                            <Registration
+                                login={props.login}
+                                setViewId={setViewId}
+                                setUserId={props.setUserId}
+                            />
                 }
             </View>
         </ImageBackground>

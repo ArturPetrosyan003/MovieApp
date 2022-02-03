@@ -14,12 +14,12 @@ const LandingPage = (props) => {
             </View>
 
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => props.login(true)}>
+                <TouchableOpacity style={styles.button} onPress={() => props.setViewId(1)}>
                     <Text style={styles.buttonText}>Go to my cinema</Text>
                 </TouchableOpacity>
             </View>
 
-            <TouchableOpacity style={styles.bottom} onPress={() => props.setViewId(1)}>
+            <TouchableOpacity style={styles.bottom} onPress={() => props.setViewId(2)}>
                 <Text style={styles.bottomText}>Don't have an account? Let's create one</Text>
             </TouchableOpacity>
         </>
